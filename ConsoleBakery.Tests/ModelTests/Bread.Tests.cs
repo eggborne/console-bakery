@@ -7,9 +7,11 @@ namespace ConsoleBakery.Tests
   public class ConsoleBakeryTests
   {
     [TestMethod]
-    public void PriceForQuantity_ReturnsPriceWithNoDiscounts_Float()
+    public void PriceForQuantity_ReturnsPriceWithDiscounts_Float()
     {
-      Assert.AreEqual(Bread.PriceForQuantity(4), 12.00f);
+      Assert.AreEqual(Bread.PriceForQuantity(1), 5.00f);
+      Assert.AreEqual(Bread.PriceForQuantity(3), 10.00f);
+      Assert.AreEqual(Bread.PriceForQuantity(4), 15.00f);
     }
   }
 }
