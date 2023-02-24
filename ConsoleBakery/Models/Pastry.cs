@@ -21,7 +21,6 @@ namespace ConsoleBakery.Models
     public float PriceForQuantity() {
       float totalPrice = _quantity * _pricePerUnit;
       int freeUnits = CalculateFreeUnits();
-      Console.WriteLine($"Would be ${totalPrice}, but you get {freeUnits} free!");
       totalPrice -= freeUnits * _pricePerUnit;
       return totalPrice;
     }
