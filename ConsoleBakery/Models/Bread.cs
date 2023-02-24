@@ -3,20 +3,24 @@ using System;
 
 namespace ConsoleBakery.Models
 {
-  public class Bread 
+  public class Bread
   {
-    private static float _pricePerUnit = 5.0f;
-    private static int _bogoAmount = 2;
+    private float _pricePerUnit = 5.0f;
+    private int _bogoAmount = 2;
+    private int _quantity { get; set; }
 
-    private static int CalculateFreeUnits(int baseUnits) {
-      int freeUnits = (baseUnits / (_bogoAmount + 1));
+    public Bread(int quantity) {
+      _quantity = quantity;
+    }
+
+    private int CalculateFreeUnits() {
+      int freeUnits = (_quantity / (_bogoAmount + 1));
       return freeUnits;
     }
 
-    public static float PriceForQuantity(int quantity) 
-    {
-      float totalPrice = quantity * _pricePerUnit;
-      int freeUnits = CalculateFreeUnits(quantity);
+    public float PriceForQuantity() {
+      float totalPrice = _quantity * _pricePerUnit;
+      int freeUnits = CalculateFreeUnits();
       Console.WriteLine($"You get {freeUnits} free!");
       totalPrice -= freeUnits * _pricePerUnit;
       return totalPrice;

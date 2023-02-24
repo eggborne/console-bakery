@@ -7,7 +7,8 @@ class Program
     Console.WriteLine("Welcome to the C# Console Bakery!");
     Console.WriteLine("How many bread?");
     int breadCount = int.Parse(Console.ReadLine());
-    float breadPrice = Bread.PriceForQuantity(breadCount);
+    Bread bread = new Bread(breadCount);
+    float breadPrice = bread.PriceForQuantity();
     Console.WriteLine($"Total is ${breadPrice}");
   }
 }
