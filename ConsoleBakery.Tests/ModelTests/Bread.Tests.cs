@@ -4,7 +4,7 @@ using ConsoleBakery.Models;
 namespace ConsoleBakery.Tests
 {
   [TestClass]
-  public class ConsoleBakeryTests
+  public class BreadTests
   {
     [TestMethod]
     public void PriceForQuantity_ReturnsPriceWithDiscounts_Float()

@@ -3,13 +3,13 @@ using System;
 
 namespace ConsoleBakery.Models
 {
-  public class Bread
+  public class Pastry
   {
-    private float _pricePerUnit = 5.0f;
-    private int _bogoAmount = 2;
+    private float _pricePerUnit = 2.0f;
+    private int _bogoAmount = 3;
     private int _quantity { get; set; }
 
-    public Bread(int quantity) {
+    public Pastry(int quantity) {
       _quantity = quantity;
     }
 
