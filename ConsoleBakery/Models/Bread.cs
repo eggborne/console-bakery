@@ -5,16 +5,11 @@ namespace ConsoleBakery.Models
 {
   public class Bread 
   {
+    private static float _pricePerUnit = 3.0f;
     
-    public Bread() 
+    public static float PriceForQuantity(int quantity) 
     {
-      
-    }
-
-    public float priceForQuantity(int quantity) 
-    {
-      float totalPrice = 0.0f;
-      totalPrice = 3.25f;
+      float totalPrice = quantity * _pricePerUnit;
       return totalPrice;
     }
   }

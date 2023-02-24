@@ -7,14 +7,9 @@ namespace ConsoleBakery.Tests
   public class ConsoleBakeryTests
   {
     [TestMethod]
-    public void ProduceWordScore_RejectsNonLetters_Int()
+    public void PriceForQuantity_ReturnsPriceWithNoDiscounts_Float()
     {
-      Assert.AreEqual(0, 0);
-    }
-    [TestMethod]
-    public void ProduceWordScore_GetsCorrectScore_Int()
-    {
-      Assert.AreEqual(0, 22);
+      Assert.AreEqual(Bread.PriceForQuantity(4), 12.00f);
     }
   }
 }
