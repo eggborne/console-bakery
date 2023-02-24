@@ -56,7 +56,6 @@ class Program
       }
       Bread bread = new Bread(breadCount);
       float breadPrice = bread.PriceForQuantity();
-      Console.WriteLine("returning breadPrice" + breadPrice);
       return breadPrice;
     }
 
@@ -73,7 +72,6 @@ class Program
       }
       Pastry pastry = new Pastry(pastryCount);
       float pastryPrice = pastry.PriceForQuantity();
-      Console.WriteLine("returning pastryPrice" + pastryPrice);
       return pastryPrice;
     }
   }
