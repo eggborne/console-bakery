@@ -19,7 +19,7 @@ A C# console program that calculates the price of a bakery order with specified 
 
 ## Known Bugs
 
-* Does not notify the user if they have an unclaimed free unit
+No known bugs.
 
 ## Legal
 
