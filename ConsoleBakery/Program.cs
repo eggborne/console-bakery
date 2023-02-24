@@ -4,11 +4,8 @@ class Program
 {
   static void Main() {
     PrintHUD();
-
     float breadPrice = PromptForBreadQuantity();
-
     float pastryPrice = PromptForPastryQuantity();
-
     float grandTotal = breadPrice + pastryPrice;
     Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine($"\nTotal is ${grandTotal}\n");
