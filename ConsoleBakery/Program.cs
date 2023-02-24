@@ -5,16 +5,10 @@ class Program
   static void Main() {
     PrintHUD();
 
-    Console.WriteLine("How many bread?");
-    int breadCount = int.Parse(Console.ReadLine());
-    Bread bread = new Bread(breadCount);
-    float breadPrice = bread.PriceForQuantity();
+    float breadPrice = PromptForBreadQuantity();
 
-    Console.WriteLine("\nHow many pastries?");
-    int pastryCount = int.Parse(Console.ReadLine());
-    Pastry pastry = new Pastry(pastryCount);
-    float pastryPrice = pastry.PriceForQuantity();
-    
+    float pastryPrice = PromptForPastryQuantity();
+
     float grandTotal = breadPrice + pastryPrice;
     Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine($"\nTotal is ${grandTotal}\n");
@@ -22,9 +16,11 @@ class Program
 
     void PrintHUD() {
       Console.Clear();
-      Console.WriteLine("Welcome to the C# Console Bakery!");
+      Console.BackgroundColor = ConsoleColor.White;
+      Console.WriteLine("        Welcome to the C# Console Bakery!        ");
+      Console.ResetColor();
       Console.ForegroundColor = ConsoleColor.White;
-      Console.WriteLine("\n=================================================");
+      Console.WriteLine("=================================================");
       Console.ForegroundColor = ConsoleColor.Cyan;
       Console.Write("  Bread:");
       Console.ForegroundColor = ConsoleColor.Green;
@@ -32,7 +28,6 @@ class Program
       Console.ForegroundColor = ConsoleColor.Yellow;
       Console.Write("     SPECIAL! Buy");
       Console.ForegroundColor = ConsoleColor.White;
-      
       Console.Write(" 2");
       Console.ForegroundColor = ConsoleColor.Yellow;
       Console.Write(" get one FREE");
@@ -49,6 +44,40 @@ class Program
       Console.ForegroundColor = ConsoleColor.White;
       Console.WriteLine("\n=================================================\n");
       Console.ResetColor();
+    }
+
+    float PromptForBreadQuantity() {
+      Console.WriteLine("How many bread?");
+      string breadInput = Console.ReadLine();
+      int breadCount = 0;
+      try {
+        breadCount = int.Parse(breadInput);
+      }
+      catch {
+        Console.WriteLine("Sorry, that's not a number!");
+        return PromptForBreadQuantity();
+      }
+      Bread bread = new Bread(breadCount);
+      float breadPrice = bread.PriceForQuantity();
+      Console.WriteLine("returning breadPrice" + breadPrice);
+      return breadPrice;
+    }
+
+    float PromptForPastryQuantity() {
+      Console.WriteLine("\nHow many pastries?");
+      string pastryInput = Console.ReadLine();
+      int pastryCount = 0;
+      try {
+        pastryCount = int.Parse(pastryInput);
+      }
+      catch {
+        Console.WriteLine("Sorry, that's not a number!");
+        return PromptForPastryQuantity();
+      }
+      Pastry pastry = new Pastry(pastryCount);
+      float pastryPrice = pastry.PriceForQuantity();
+      Console.WriteLine("returning pastryPrice" + pastryPrice);
+      return pastryPrice;
     }
   }
 }
