@@ -10,7 +10,7 @@ namespace ConsoleBakery.Models
       _quantity = quantity;
     }
 
-    private int CalculateFreeUnits() {
+    public int CalculateFreeUnits() {
       int freeUnits = (_quantity / (_bogoAmount + 1));
       return freeUnits;
     }
