@@ -1,14 +1,25 @@
 using System;
+using System.Collections.Generic;
 using ConsoleBakery.Models;
 class Program
 {
   static void Main() {
     PrintHUD();
-    float breadPrice = PromptForBreadQuantity();
-    float pastryPrice = PromptForPastryQuantity();
+    int breadQuantity = PromptForProductQuantity("bread");
+    int pastryQuantity = PromptForProductQuantity("pastry");
+    Bread breadOrder = new Bread(breadQuantity);
+    Pastry pastryOrder = new Pastry(pastryQuantity);
+    float breadPrice = breadOrder.PriceForQuantity();
+    float pastryPrice = pastryOrder.PriceForQuantity();
     float grandTotal = breadPrice + pastryPrice;
-    Console.ForegroundColor = ConsoleColor.Green;
-    Console.WriteLine($"\nTotal is ${grandTotal}\n");
+    List<Product> orderList = new List<Product>();
+    orderList.Add(breadOrder);
+    orderList.Add(pastryOrder);
+
+    PrintInvoice(orderList);
+
+    // Console.ForegroundColor = ConsoleColor.Green;
+    // Console.WriteLine($"\nTotal is ${grandTotal}\n");
     Console.ResetColor();
 
     void PrintHUD() {
@@ -43,36 +54,63 @@ class Program
       Console.ResetColor();
     }
 
-    float PromptForBreadQuantity() {
-      Console.WriteLine("How many bread?");
-      string breadInput = Console.ReadLine();
-      int breadCount = 0;
-      try {
-        breadCount = int.Parse(breadInput);
-      }
-      catch {
-        Console.WriteLine("Sorry, that's not a number!");
-        return PromptForBreadQuantity();
-      }
-      Bread bread = new Bread(breadCount);
-      float breadPrice = bread.PriceForQuantity();
-      return breadPrice;
+    void PrintInvoice(List<Product> orderList) {
+      Console.Clear();
+      PrintHUD();
+      Product breadOrder = orderList[0];
+      Product pastryOrder = orderList[1];
+      float grandTotal = pastryOrder.PriceForQuantity() + breadOrder.PriceForQuantity();
+      Console.BackgroundColor = ConsoleColor.Magenta;
+      Console.WriteLine("\n                     INVOICE                     ");
+      Console.ResetColor();
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.WriteLine("=================================================");
+
+      Console.ForegroundColor = ConsoleColor.Cyan;
+      Console.Write("  Bread:");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.Write($"     {breadOrder.quantity} @ ${breadOrder.pricePerUnit}");
+      Console.ForegroundColor = ConsoleColor.Yellow;
+      Console.Write($"     FREE:");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.Write($" {breadOrder.CalculateFreeUnits()}");
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.Write($"     Total: ${breadOrder.PriceForQuantity()}");
+
+      Console.ForegroundColor = ConsoleColor.Cyan;
+      Console.Write("\n  Pastries:");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.Write($"  {pastryOrder.quantity} @ ${pastryOrder.pricePerUnit}");
+      Console.ForegroundColor = ConsoleColor.Yellow;
+      Console.Write($"     FREE:");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.Write($" {pastryOrder.CalculateFreeUnits()}");
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.Write($"     Total: ${pastryOrder.PriceForQuantity()}");
+
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.WriteLine("\n=================================================");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.Write("                              Grand Total:");
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.Write($" ${grandTotal}");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.WriteLine("\n=================================================");
+      Console.ResetColor();
     }
 
-    float PromptForPastryQuantity() {
-      Console.WriteLine("\nHow many pastries?");
-      string pastryInput = Console.ReadLine();
-      int pastryCount = 0;
+    int PromptForProductQuantity(string productName) {
+      Console.WriteLine($"How many {productName}?");
+      string productInput = Console.ReadLine();
+      int productCount = 0;
       try {
-        pastryCount = int.Parse(pastryInput);
+        productCount = int.Parse(productInput);
       }
       catch {
         Console.WriteLine("Sorry, that's not a number!");
-        return PromptForPastryQuantity();
+        return PromptForProductQuantity(productName);
       }
-      Pastry pastry = new Pastry(pastryCount);
-      float pastryPrice = pastry.PriceForQuantity();
-      return pastryPrice;
+      return productCount;
     }
   }
 }
