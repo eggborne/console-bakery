@@ -1,25 +1,11 @@
 namespace ConsoleBakery.Models
 {
-  public class Bread
+  public class Bread : Product
   {
-    private float _pricePerUnit = 5.0f;
-    private int _bogoAmount = 2;
-    private int _quantity { get; set; }
-
-    public Bread(int quantity) {
+    public Bread(int quantity) : base(quantity) {
       _quantity = quantity;
-    }
-
-    public int CalculateFreeUnits() {
-      int freeUnits = (_quantity / (_bogoAmount + 1));
-      return freeUnits;
-    }
-
-    public float PriceForQuantity() {
-      float totalPrice = _quantity * _pricePerUnit;
-      int freeUnits = CalculateFreeUnits();
-      totalPrice -= freeUnits * _pricePerUnit;
-      return totalPrice;
+      _pricePerUnit = 5.0f;
+      _bogoAmount = 2;
     }
   }
 }
