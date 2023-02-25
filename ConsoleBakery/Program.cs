@@ -18,8 +18,6 @@ class Program
 
     PrintInvoice(orderList);
 
-    // Console.ForegroundColor = ConsoleColor.Green;
-    // Console.WriteLine($"\nTotal is ${grandTotal}\n");
     Console.ResetColor();
 
     void PrintHUD() {
@@ -61,7 +59,7 @@ class Program
       Product pastryOrder = orderList[1];
       float grandTotal = pastryOrder.PriceForQuantity() + breadOrder.PriceForQuantity();
       Console.BackgroundColor = ConsoleColor.Magenta;
-      Console.WriteLine("\n                     INVOICE                     ");
+      Console.WriteLine("                     INVOICE                     ");
       Console.ResetColor();
       Console.ForegroundColor = ConsoleColor.White;
       Console.WriteLine("=================================================");
@@ -95,7 +93,7 @@ class Program
       Console.ForegroundColor = ConsoleColor.Green;
       Console.Write($" ${grandTotal}");
       Console.ForegroundColor = ConsoleColor.White;
-      Console.WriteLine("\n=================================================");
+      Console.WriteLine("\n=================================================\n");
       Console.ResetColor();
     }
 
